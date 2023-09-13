@@ -1,0 +1,15 @@
+[Unit]
+Description=ISC Kea DHCP Server
+Documentation=man:keactrl(8)
+Wants=network-online.target
+After=network-online.target
+
+# Due to the fact that keactrl forks, RemainAfterExit=yes is necessary
+[Service]
+ExecStart=/usr/sbin/keactrl start
+ExecReload=/usr/sbin/keactrl reload
+ExecStop=/usr/sbin/keactrl stop
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
